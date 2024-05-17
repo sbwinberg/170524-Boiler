@@ -36,17 +36,15 @@ const server = http.createServer((request, response) => {
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write(cardTemplate, 'utf-8', (_err) => {
             if (_err) return console.log(_err);
-            
+            console.log('Welcome to card page');
+        response.end();
         });   
-        }
         
-
-        console.log('Welcome to card page');
-        response.end();
+        
     } else {
-        response.writeHead(404, { 'Content-Type': 'text/html' });
+        response.writeHead(404, { 'Content-Type': 'text/html' })
         response.write('Error.... page note found!', 'utf-8')
-        response.end();
+        response.end()
     }
 });
 
