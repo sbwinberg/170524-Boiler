@@ -29,7 +29,7 @@ const server = http.createServer((request, response) => {
         });
         console.log('Welcome to home page');
         response.end();
-    } else if (path === '/card.html') {
+    } else if (path === '/card') {
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write(cardTemplate, 'utf-8', (_err) => {
             if (_err) return console.log(_err);
