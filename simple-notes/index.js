@@ -18,7 +18,7 @@ const noteDataToHTML = (template, note) => {
 
 const server = http.createServer((request, response) => {
     // const path = request.url.toLowerCase();
-    const { query, pathname: path} = oUrl.parse(request.url, true);
+const { query, pathname: path} = oUrl.parse(request.url, true);
     console.log(query);
 
     if (path === '/' || path === '/home') {
@@ -33,12 +33,12 @@ const server = http.createServer((request, response) => {
         console.log('Welcome to home page');
         response.end();
     } else if (path === '/card') {
-        response.writeHead(200, { 'Content-Type': 'text/html' });
+                response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write(cardTemplate, 'utf-8', (_err) => {
             if (_err) return console.log(_err);
-            console.log('Welcome to card page');
+                console.log('Welcome to card page');
         response.end();
-        });   
+});   
         
         
     } else {
