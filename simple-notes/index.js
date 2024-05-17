@@ -3,6 +3,9 @@ const http = require('http');
 
 const displayNotes = fs.readFileSync('index.html', 'utf-8'); 
 const displayCard = fs.readFileSync('card.html', 'utf-8');
+const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+
+
 
 const server = http.createServer((request, response) => {
     const path = request.url.toLowerCase();
