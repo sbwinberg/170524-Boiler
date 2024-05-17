@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+const oUrl = require('url');
 
 const displayNotes = fs.readFileSync('index.html', 'utf-8'); 
 const cardTemplate = fs.readFileSync('card.html', 'utf-8');
@@ -16,7 +17,9 @@ const noteDataToHTML = (template, note) => {
     };
 
 const server = http.createServer((request, response) => {
-    const path = request.url.toLowerCase();
+    // const path = request.url.toLowerCase();
+    const { query, pathname: path} = oUrl.parse(request.url, true);
+    console.log(query);
 
     if (path === '/' || path === '/home') {
         
@@ -33,13 +36,15 @@ const server = http.createServer((request, response) => {
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write(cardTemplate, 'utf-8', (_err) => {
             if (_err) return console.log(_err);
-        });
-        console.log('Welcome to card page');
+            console.log('Welcome to card page');
         response.end();
+        });   
+        
+        
     } else {
-        response.writeHead(404, { 'Content-Type': 'text/html' });
+        response.writeHead(404, { 'Content-Type': 'text/html' })
         response.write('Error.... page note found!', 'utf-8')
-        response.end();
+        response.end()
     }
 });
 
